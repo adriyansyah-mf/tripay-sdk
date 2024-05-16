@@ -1,3 +1,5 @@
+import json
+
 import attrs
 import httpx
 
@@ -27,6 +29,6 @@ class Calculator:
                 self.url, headers=headers, params=payloads
             )
 
-            return req.text
+            return json.dumps(req.text)
         except Exception as e:
             FailedCalculateFeeError(str(e))

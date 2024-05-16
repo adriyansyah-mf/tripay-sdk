@@ -2,13 +2,12 @@ from typing import Optional, List
 import httpx
 import attrs
 import json
-
 from tripayclient.core.exceptions import FailedListingTransactionsError, FailedCreateTransactionsError, \
     FailedGetDetailTransaction
 
 
 @attrs.define
-class Transactions:
+class ClosedTransactions:
     """
     Class For Transaction
     """
@@ -40,8 +39,9 @@ class Transactions:
 
 
 
-    async def closed_transactions(self, payload: dict, order_items: List[dict]
+    async def create(self, payload: dict, order_items: List[dict]
                                   ):
+
         """
         Method for create closed transactions
         exp payloads:
@@ -55,7 +55,7 @@ class Transactions:
             'return_url': 'https://domainanda.com/redirect',
             'expired_time': expiry,
             'signature': signature
-          }
+        }
 
         exp order_items:
         [
@@ -84,7 +84,7 @@ class Transactions:
                 payload['order_items[' + str(i) + '][' + str(k) + ']'] = item[k]
             i += 1
 
-        headers = { "Authorization": "Bearer " + self.api_key}
+        headers = {"Authorization": "Bearer " + self.api_key}
         try:
             req = httpx.post(url=self.api_key+"transaction/create", data=payload, headers=headers)
 
@@ -92,7 +92,7 @@ class Transactions:
         except Exception as e:
             raise FailedCreateTransactionsError(str(e))
 
-    async def detail_closed_transaction(self, payload: dict):
+    async def detail(self, payload: dict):
         """
         Method for detail closed transaction
         exp payload
