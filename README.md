@@ -1,18 +1,24 @@
 # Tripay Python SDK (UnOfficial)
 
 [Docs](https://tripay.co.id/developer)
+## Installation 
+```python
+  pip install tripay-sdk
+```
 
+## MANUAL
 Enum Mode 
-
+  ```python
     class ModeEnum(str, Enum):  
 	    sandbox = "https://tripay.co.id/api-sandbox/"  
-		  prod = "https://tripay.co.id/api/"
-
+	    prod = "https://tripay.co.id/api/"
+  ```
 Authentication
-
+  ```python 
     async def payment():
 	    t = Tripay(api_key, private_key, mode)
-   
+  ```
+  
   ## Closed Transaction
   **Create Transaction**
   
