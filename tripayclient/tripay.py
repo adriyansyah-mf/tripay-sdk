@@ -3,7 +3,6 @@ import attrs
 from tripayclient.core.auth import Auth
 from tripayclient.core.open_transactions import OpenTransactions
 from tripayclient.core.closed_transactions import ClosedTransactions
-from tripayclient.core.instructions import Instructions
 from tripayclient.core.calculator import Calculator
 from tripayclient.schemas.channel_enum import ChannelTypeEnum, ModeEnum
 
