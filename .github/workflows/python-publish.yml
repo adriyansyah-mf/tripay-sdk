@@ -13,8 +13,9 @@ on:
     types: [published]
   workflow_run:
     workflows: [Build]
-    types:
-      - completed
+    types: [completed]
+
+
 
 permissions:
   contents: read
