@@ -77,7 +77,7 @@ class ClosedTransactions:
             }
           ]
         """
-
+        payload["signature"] = self.signature if self.signature is not None else None
         i = 0
         for item in order_items:
             for k in item:
@@ -86,10 +86,11 @@ class ClosedTransactions:
 
         headers = {"Authorization": "Bearer " + self.api_key}
         try:
-            req = httpx.post(url=self.api_key+"transaction/create", data=payload, headers=headers)
+            req = httpx.post(url=self.url+"transaction/create", data=payload, headers=headers)
 
             return json.dumps(req.text)
         except Exception as e:
+
             raise FailedCreateTransactionsError(str(e))
 
     async def detail(self, payload: dict):

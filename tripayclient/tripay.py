@@ -93,7 +93,6 @@ class ClosedTransaction:
             merchant_ref=payload['merchant_ref'],
             amount=payload['amount']
         )
-
         return await ClosedTransactions(
             self.api_key,
             self._get_url,
@@ -137,7 +136,7 @@ class Tripay:
     ClosedTransaction: ClosedTransaction = attrs.field(init=False)
     OpenTransaction: OpenTransaction = attrs.field(init=False)
 
-    async def __attrs_post_init__(self):
+    def __attrs_post_init__(self):
         self.ClosedTransaction = ClosedTransaction(self.api_key, self.private_key, self.mode)
         self.OpenTransaction = OpenTransaction(self.private_key, self.api_key)
 

@@ -21,6 +21,7 @@ class Auth:
         Returns:
             str: signature
         """
+
         signStr = "{}{}{}".format(merchant_code, merchat_ref, amount)
         
         return hmac.new(bytes(self.privateKey,'latin-1'), bytes(signStr,'latin-1'), hashlib.sha256).hexdigest()
